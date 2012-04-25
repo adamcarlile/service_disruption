@@ -16,6 +16,11 @@ module ServiceDisruption
       @status_details     = status_details
       @status_description = status[:description]
       @active             = status[:is_active]
+      @updated_at         = Time.now
+    end
+
+    def image
+      "#{ROOT_PATH}/static/#{@id.to_s.downcase}.png"
     end
 
     def to_s
@@ -26,6 +31,10 @@ module ServiceDisruption
 
     def disrupted?
       [:MD, :SD, :CS].include? @id
+    end
+
+    def ==(another_status)
+      (self.id == another_status.id) && (self.status_details == another_status.status_details)
     end
 
   end

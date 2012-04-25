@@ -8,8 +8,12 @@ Gem::Specification.new do |s|
   s.authors     = ["Adam Carlile"]
   s.email       = ["adam@benchmedia.co.uk"]
   s.homepage    = ""
-  s.summary     = %q{TODO: Write a gem summary}
-  s.description = %q{TODO: Write a gem description}
+  s.summary     = %q{
+    A simple gem to track the current status of London Underground services
+  }
+  s.description = %q{
+    BOOM!
+  }
 
   s.rubyforge_project = "service_disruption"
 
@@ -22,4 +26,8 @@ Gem::Specification.new do |s|
   # s.add_development_dependency "rspec"
   s.add_runtime_dependency "thor"
   s.add_runtime_dependency "httparty"
+  s.add_runtime_dependency "eventmachine"
+  s.add_runtime_dependency "rainbow"
+  s.add_runtime_dependency "active_support"
+  s.add_runtime_dependency "daemons"
 end

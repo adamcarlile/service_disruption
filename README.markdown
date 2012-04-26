@@ -20,7 +20,14 @@ Alternatively if you'd like to see some pretty colours on your command line you 
 
 That will tell you the current state of the tube network, you can also incude it as any other ruby library. It exposes the following API:
 
-    ServiceDisruption.network #Returns the current network status as an object, all other methods can be accessed through this
+    network = ServiceDisruption.network
+
+    network.lines # Array of lines
+    bakerloo = network.find_by_name('Bakerloo') # Line object
+
+    bakerloo.status # Status object
+
+    network.update! # Updates all of the lines status information if it has changed
 
 ## Who?
 

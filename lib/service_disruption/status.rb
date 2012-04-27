@@ -30,7 +30,7 @@ module ServiceDisruption
     end
 
     def disrupted?
-      [:MD, :SD, :CS].include? @id
+      [:MD, :SD, :CS, :PS].include? @id
     end
 
     def ==(another_status)

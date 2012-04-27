@@ -13,15 +13,9 @@ module ServiceDisruption
       end
     end
 
-
     desc "status", "Show the current line status"
     def status
       puts ServiceDisruption.network
-    end
-
-    desc "timer", "Set the timer to automatically iterate"
-    def timer
-
     end
 
   end

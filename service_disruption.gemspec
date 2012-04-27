@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.version     = ServiceDisruption::VERSION
   s.authors     = ["Adam Carlile"]
   s.email       = ["adam@benchmedia.co.uk"]
-  s.homepage    = ""
+  s.homepage    = "http://adamcarlile.com"
   s.summary     = %q{
     A simple gem to track the current status of London Underground services
   }

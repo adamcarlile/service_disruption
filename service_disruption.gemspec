@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path("../lib", __FILE__)
-require "service_disruption/version"
+require "service_disruption"
 
 Gem::Specification.new do |s|
   s.name        = "service_disruption"
@@ -23,11 +23,12 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   # specify any dependencies here; for example:
-  # s.add_development_dependency "rspec"
-  s.add_runtime_dependency "thor"
-  s.add_runtime_dependency "httparty"
-  s.add_runtime_dependency "eventmachine"
-  s.add_runtime_dependency "rainbow"
-  s.add_runtime_dependency "active_support"
-  s.add_runtime_dependency "daemons"
+  s.add_development_dependency 'rake', '~> 0.9.2'
+
+  s.add_runtime_dependency "thor", '~> 0.14.6'
+  s.add_runtime_dependency "httparty", '~> 0.8.3'
+  s.add_runtime_dependency "eventmachine", '~> 0.12.10'
+  s.add_runtime_dependency "rainbow", '~> 1.1.3'
+  s.add_runtime_dependency "activesupport", '~> 3.2.0'
+  s.add_runtime_dependency "ruby_gntp", '~> 0.3.4'
 end

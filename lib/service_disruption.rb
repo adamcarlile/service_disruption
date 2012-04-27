@@ -4,7 +4,6 @@ rescue LoadError
 end
 
 require 'uri'
-require 'daemons'
 require 'thor'
 require 'httparty'
 require 'eventmachine'

@@ -6,7 +6,8 @@ module ServiceDisruption
       :MD => :yellow,
       :SD => :red,
       :CS => :yellow,
-      :PS => :red
+      :PS => :red,
+      :PC => :yellow
     }
 
     attr_accessor :id, :status_details, :status_description, :active
@@ -30,7 +31,7 @@ module ServiceDisruption
     end
 
     def disrupted?
-      [:MD, :SD, :CS, :PS].include? @id
+      [:MD, :SD, :CS, :PS, :PC].include? @id
     end
 
     def ==(another_status)

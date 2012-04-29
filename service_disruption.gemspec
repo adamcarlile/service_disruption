@@ -12,7 +12,8 @@ Gem::Specification.new do |s|
     A simple gem to track the current status of London Underground services
   }
   s.description = %q{
-    BOOM!
+    A simple gem to track the current status of London Underground services, it polls the TFL endpoint and will alert
+    you if there is an issue, also provides a nice interface to TFL's tube data, still very beta, please give me a poke on github with suggestions and enhancements.
   }
 
   s.rubyforge_project = "service_disruption"

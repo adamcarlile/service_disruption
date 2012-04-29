@@ -12,7 +12,9 @@ A little library to easily tell you when the Tube has problems
 
     $: service_disruption start
 
-Extra arguments are: `-d` to deamonise and `-i` to change the polling time, defaults to once every 30 seconds
+    $: service_disruption stop
+
+Extra arguments are: `-- -i` to change the polling time, defaults to once every 30 seconds
 
 Alternatively if you'd like to see some pretty colours on your command line you can run
 

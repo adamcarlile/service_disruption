@@ -34,4 +34,5 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency "rainbow", '~> 1.1.3'
   s.add_runtime_dependency "activesupport", '~> 3.2.0'
   s.add_runtime_dependency "ruby_gntp", '~> 0.3.4'
+  s.add_runtime_dependency "daemons", '~> 1.1.8'
 end

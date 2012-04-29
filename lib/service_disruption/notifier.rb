@@ -13,6 +13,9 @@ module ServiceDisruption
         :icon  => line.status.image,
         :sticky => true
       })
+      true
+      rescue
+        false
     end
 
     private
@@ -23,6 +26,9 @@ module ServiceDisruption
           :enabled  => true,
           }]
         })
+        true
+        rescue
+          false
       end
 
   end

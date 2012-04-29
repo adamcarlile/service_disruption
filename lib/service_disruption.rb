@@ -25,7 +25,7 @@ require "service_disruption/notifier"
 require "service_disruption/core_ext/hash"
 
 module ServiceDisruption
-  VERSION = '0.0.1'
+  VERSION = '0.1.0'
   TFL_ENDPOINT = 'http://cloud.tfl.gov.uk/TrackerNet/LineStatus'
   ROOT_PATH = File.dirname(File.dirname(__FILE__))
 

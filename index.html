@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=640" />
+
+    <link rel="stylesheet" href="stylesheets/core.css" media="screen"/>
+    <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)"/>
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
+
+    <script type="text/javascript" src="javascripts/modernizr.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="javascripts/headsmart.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('#main_content').headsmart()
+      })
+    </script>
+    <title>Service disruption by Frozenproduce</title>
+  </head>
+
+  <body>
+    <a id="forkme_banner" href="https://github.com/Frozenproduce/service_disruption">View on GitHub</a>
+    <div class="shell">
+
+      <header>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <h1>Service disruption</h1>
+            <h2>A simple utility to let you know if your London Underground services are running correctly</h2>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+      </header>
+
+      <section id="downloads">
+        <span class="inner">
+          <a href="https://github.com/Frozenproduce/service_disruption/zipball/master" class="zip"><em>download</em> .ZIP</a><a href="https://github.com/Frozenproduce/service_disruption/tarball/master" class="tgz"><em>download</em> .TGZ</a>
+        </span>
+      </section>
+
+
+      <span class="banner-fix"></span>
+
+
+      <section id="main_content">
+        <h1>Service Disruption</h1>
+
+<p>A little library to easily tell you when the Tube has problems</p>
+
+<h2>Install</h2>
+
+<pre><code>gem install service_disruption
+</code></pre>
+
+<h2>Running</h2>
+
+<pre><code>$: service_disruption start
+
+$: service_disruption stop
+</code></pre>
+
+<p>Extra arguments are: <code>-- -i</code> to change the polling time, defaults to once every 30 seconds</p>
+
+<p>Alternatively if you'd like to see some pretty colours on your command line you can run</p>
+
+<pre><code>$: service_disruption status
+</code></pre>
+
+<p>That will tell you the current state of the tube network, you can also incude it as any other ruby library. It exposes the following API:</p>
+
+<pre><code>network = ServiceDisruption.network
+
+network.lines # Array of lines
+bakerloo = network.find_by_name('Bakerloo') # Line object
+
+bakerloo.status # Status object
+
+network.update! # Updates all of the lines status information if it has changed
+</code></pre>
+
+<h2>Who?</h2>
+
+<p><a href="http://adamcarlile.com">Adam Carlile</a> built this. Ping me on Twitter —
+<a href="http://twitter.com/frozenproduce">@frozenproduce</a>.</p>
+
+<p>NOTE: Not to be used for mission critical service monitoring!</p>
+      </section>
+
+      <footer>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <p>this project by <a href="https://github.com/Frozenproduce">Frozenproduce</a> can be found on <a href="https://github.com/Frozenproduce/service_disruption">GitHub</a></p>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+        <p>Generated with <a href="http://pages.github.com">GitHub Pages</a> using Merlot</p>
+        <span class="octocat"></span>
+      </footer>
+
+    </div>
+
+    
+  </body>
+</html>

@@ -29,11 +29,12 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'fakeweb', '~> 1.3.0'
   s.add_development_dependency 'fuubar', '~> 1.0.0'
 
-  s.add_runtime_dependency "thor", '~> 0.14.6'
-  s.add_runtime_dependency "httparty", '~> 0.8.3'
-  s.add_runtime_dependency "eventmachine", '~> 0.12.10'
-  s.add_runtime_dependency "rainbow", '~> 1.1.3'
-  s.add_runtime_dependency "activesupport", '~> 3.2.0'
-  s.add_runtime_dependency "ruby_gntp", '~> 0.3.4'
-  s.add_runtime_dependency "daemons", '~> 1.1.8'
+  s.add_runtime_dependency "thor"
+  s.add_runtime_dependency "terminal-notifier"
+  s.add_runtime_dependency "httparty"
+  s.add_runtime_dependency "eventmachine"
+  s.add_runtime_dependency "rainbow"
+  s.add_runtime_dependency "activesupport"
+  s.add_runtime_dependency "ruby_gntp"
+  s.add_runtime_dependency "daemons"
 end

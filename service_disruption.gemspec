@@ -24,17 +24,17 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   # specify any dependencies here; for example:
-  s.add_development_dependency 'rake', '~> 0.9.2'
-  s.add_development_dependency 'rspec', '~> 2.9.0'
-  s.add_development_dependency 'fakeweb', '~> 1.3.0'
-  s.add_development_dependency 'fuubar', '~> 1.0.0'
+  s.add_development_dependency 'rake'
+  s.add_development_dependency 'rspec'
+  s.add_development_dependency 'fakeweb'
+  s.add_development_dependency 'fuubar'
 
   s.add_runtime_dependency "thor"
-  s.add_runtime_dependency "terminal-notifier"
   s.add_runtime_dependency "httparty"
   s.add_runtime_dependency "eventmachine"
   s.add_runtime_dependency "rainbow"
   s.add_runtime_dependency "activesupport"
   s.add_runtime_dependency "ruby_gntp"
+  s.add_runtime_dependency "terminal-notifier"
   s.add_runtime_dependency "daemons"
 end

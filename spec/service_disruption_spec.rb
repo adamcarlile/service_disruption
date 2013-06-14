@@ -10,8 +10,4 @@ describe "Service Disruption" do
     ServiceDisruption.data_source.class.should eq(ServiceDisruption::DataSource)
   end
 
-  it "should return a notifier" do
-    ServiceDisruption.notifier.class.should eq(ServiceDisruption::Notifier)
-  end
-
 end

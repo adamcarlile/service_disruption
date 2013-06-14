@@ -4,14 +4,14 @@ module ServiceDisruption
     desc "start", "Start a demonized monitor"
     method_option :interval, :aliases => "-i", :default => 30, :type => :numeric, :banner => "Interval to wait to poll in seconds"
     def start
-      Daemons.run_proc('service_disruption', :options => {:ARGV => ['start']}) do
+      Daemons.run_proc('service_disruption', :ARGV => ['start'], :dir_mode => :normal, :dir => '/tmp') do
         run_as_event_machine(options)
       end
     end
 
     desc "stop", "Stop a demonized monitor"
     def stop
-      Daemons.run_proc('service_disruption', :options => {:ARGV => ['stop']}) do
+      Daemons.run_proc('service_disruption', :ARGV => ['stop'], :dir_mode => :normal, :dir => '/tmp') do
         run_as_event_machine
       end
     end

@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
-$:.push File.expand_path("../lib", __FILE__)
-require "service_disruption"
+lib = File.expand_path('../lib', __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+require 'service_disruption/version'
 
 Gem::Specification.new do |s|
   s.name        = "service_disruption"
@@ -16,25 +17,17 @@ Gem::Specification.new do |s|
     you if there is an issue, also provides a nice interface to TFL's tube data, still very beta, please give me a poke on github with suggestions and enhancements.
   }
 
-  s.rubyforge_project = "service_disruption"
+  s.licence = "MIT"
 
-  s.files         = `git ls-files`.split("\n")
-  s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
-  s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
+  s.files         = `git ls-files -z`.split("\x0")
+  s.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
+  s.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   s.require_paths = ["lib"]
 
-  # specify any dependencies here; for example:
-  s.add_development_dependency 'rake'
-  s.add_development_dependency 'rspec'
-  s.add_development_dependency 'fakeweb'
-  s.add_development_dependency 'fuubar'
+  s.add_dependency "faraday"
 
-  s.add_runtime_dependency "thor"
-  s.add_runtime_dependency "httparty"
-  s.add_runtime_dependency "eventmachine"
-  s.add_runtime_dependency "rainbow"
-  s.add_runtime_dependency "activesupport"
-  s.add_runtime_dependency "ruby_gntp"
-  s.add_runtime_dependency "terminal-notifier"
-  s.add_runtime_dependency "daemons"
+  s.add_development_dependency "minitest"
+  s.add_development_dependency "bundler", "~> 1.6"
+  s.add_development_dependency "rake", "~> 10.0"
+  s.add_development_dependency "pry"
 end

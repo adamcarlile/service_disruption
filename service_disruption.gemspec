@@ -17,14 +17,17 @@ Gem::Specification.new do |s|
     you if there is an issue, also provides a nice interface to TFL's tube data, still very beta, please give me a poke on github with suggestions and enhancements.
   }
 
-  s.licence = "MIT"
+  s.license = "MIT"
 
   s.files         = `git ls-files -z`.split("\x0")
-  s.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
-  s.test_files    = spec.files.grep(%r{^(test|spec|features)/})
+  s.executables   = s.files.grep(%r{^bin/}) { |f| File.basename(f) }
+  s.test_files    = s.files.grep(%r{^(test|spec|features)/})
   s.require_paths = ["lib"]
 
   s.add_dependency "faraday"
+  s.add_dependency "faraday_middleware"
+  s.add_dependency "virtus"
+  s.add_dependency "activesupport"
 
   s.add_development_dependency "minitest"
   s.add_development_dependency "bundler", "~> 1.6"

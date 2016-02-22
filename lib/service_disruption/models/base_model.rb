@@ -2,8 +2,10 @@ module ServiceDisruption
   module Models
     class BaseModel
       include Virtus.model
+      include Virtus.relations
 
       class << self
+        attr_accessor :resources
 
         def from_payload(payload, connection)
           case payload
@@ -12,26 +14,26 @@ module ServiceDisruption
           end
         end
 
+        def with_resources &block
+          @resources = block if block_given?
+        end
+
       end
 
       def initialize(args)
-        @_client = args.delete(:client) if args[:client]
+        @client = args.delete(:client) if args[:client]
         super(args)
       end
 
-      def method_missing(name, *args, &block)
-        if resources.is_a?(Resources::Map) && resources.endpoints.keys.include?(name)
-          resources.endpoints[name].get(*args)
-        else
-          super
+      def resources
+        @resources ||= Resources::Map.new(client) do |map|
+          instance_exec map, &self.class.resources
         end
       end
 
-      private
-
-        def _client
-          @_client
-        end
+      def client
+        @client.blank? ? parent.client : @client
+      end
 
     end
   end

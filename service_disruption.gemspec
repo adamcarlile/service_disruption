@@ -27,6 +27,7 @@ Gem::Specification.new do |s|
   s.add_dependency "faraday"
   s.add_dependency "faraday_middleware"
   s.add_dependency "virtus"
+  s.add_dependency "virtus-relations"
   s.add_dependency "activesupport"
 
   s.add_development_dependency "minitest"

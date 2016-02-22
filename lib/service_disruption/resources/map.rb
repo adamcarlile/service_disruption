@@ -11,8 +11,16 @@ module ServiceDisruption
         @endpoints ||= {}
       end
 
-      def add(name, path, model, options={})
-        endpoints[name] = Path.new(path, model, connection, options)
+      def add(name, path, options={})
+        endpoints[name] = Path.new(path, connection, options)
+      end
+
+      def method_missing(name, *args, &block)
+        if endpoints.keys.include?(name)
+          endpoints[name].get(*args)
+        else
+          super
+        end
       end
 
       private

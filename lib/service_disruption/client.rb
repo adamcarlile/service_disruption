@@ -24,10 +24,10 @@ module ServiceDisruption
 
     def resources
       @resources ||= Resources::Map.new(connection) do |map|
-        map.add :line,  '/line/:id',             Models::Line
-        map.add :mode,  '/line/mode/:id',        Models::Line
-        map.add :route, '/line/route',           Models::Line
-        map.add :status,'/line/mode/:id/status', Models::Line
+        map.add :line,  '/line/:id',             model: Models::Line
+        map.add :mode,  '/line/mode/:id',        model: Models::Line
+        map.add :route, '/line/route',           model: Models::Line
+        map.add :status,'/line/mode/:id/status', model: Models::Line
       end
     end
 

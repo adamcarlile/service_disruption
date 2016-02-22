@@ -2,25 +2,40 @@ module ServiceDisruption
   module Resources
     class Path
 
-      def initialize(path, model, connection, options={})
-        @path, @model, @connection, @options = path, model, connection, options
+      attr_reader :options, :connection, :path
+
+      def initialize(path, connection, options={})
+        @path, @connection = path, connection
+        @options = default_options.merge(options)
       end
 
       def get(params={})
-        response = @connection.get(substituted_path(params)).body
-        if @model.is_a? Class
-          @model.from_payload(response, @connection)
-        else
-          response = response.first if response.is_a?(Array) && response.length == 1
-          @model.attributes = response
-          @model
-        end
+        response = connection.get(substituted_path(params)).body
+        response = response.first if response.is_a?(Array) && response.length == 1
+        return model.from_payload(response, connection) if model.is_a?(Class)
+        response = transform.call(response) if transform
+        response
+      end
+
+      def model
+        options[:model]
+      end
+
+      def transform
+        options[:transform]
       end
 
       private
 
+        def default_options
+          {
+            model: nil,
+            transform: nil
+          }
+        end
+
         def fragments
-          @fragments ||= /(:\w*)/.match(@path).captures.each_with_object({}) do |capture, obj|
+          @fragments ||= /(:\w*)/.match(path).captures.each_with_object({}) do |capture, obj|
             obj[capture.delete(':').to_sym] = capture
           end 
         end
@@ -34,7 +49,7 @@ module ServiceDisruption
         end
 
         def parse_hash(params)
-          path = @path.dup
+          path = self.path.dup
           params.each do |key, value|
             path.gsub! fragments[key.to_sym], value.to_s
           end
@@ -42,7 +57,7 @@ module ServiceDisruption
         end
 
         def parse_array(params)
-          path = @path.dup
+          path = self.path.dup
           params.each_with_index do |value, index|
             path.gsub! fragments.values[index], value.to_s
           end

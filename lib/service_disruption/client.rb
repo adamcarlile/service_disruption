@@ -16,7 +16,7 @@ module ServiceDisruption
         connection.use Faraday::Response::RaiseError
 
         connection.use Middleware::RubifyKeys
-        connection.response :json, :content_type => /\bjson$/
+        connection.response :json, content_type: /\bjson$/
 
         connection.adapter Faraday.default_adapter
       end

@@ -1,6 +1,7 @@
 module ServiceDisruption
   module Models
     class BaseModel
+      include Comparable
       include Virtus.model
       include Virtus.relations
 
@@ -18,6 +19,10 @@ module ServiceDisruption
           @resources = block if block_given?
         end
 
+      end
+
+      def <=>(other)
+        to_s <=> other.to_s
       end
 
       def initialize(args)

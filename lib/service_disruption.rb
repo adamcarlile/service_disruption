@@ -10,6 +10,8 @@ require 'service_disruption/extensions/hash'
 require 'service_disruption/middleware/rubify_keys'
 
 require 'service_disruption/models/base_model'
+require 'service_disruption/models/collection'
+require 'service_disruption/models/arrival'
 require 'service_disruption/models/status'
 require 'service_disruption/models/route'
 require 'service_disruption/models/stop'

@@ -20,10 +20,6 @@ module ServiceDisruption
         where(params).first
       end
 
-      def order_by(key)
-        sort {|x| x.send(key)}
-      end
-
     end
   end
 end

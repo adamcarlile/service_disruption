@@ -22,20 +22,13 @@ module ServiceDisruption
       end
     end
 
-    def resources
+    def line
       @resources ||= Resources::Map.new(connection) do |map|
-        map.add :line,  '/line/:id',             model: Models::Line
-        map.add :mode,  '/line/mode/:id',        model: Models::Line
-        map.add :route, '/line/route',           model: Models::Line
-        map.add :status,'/line/mode/:id/status', model: Models::Line
-      end
-    end
-
-    def method_missing(name, *args, &block)
-      if resources.endpoints.keys.include?(name)
-        resources.endpoints[name].get(*args)
-      else
-        super
+        map.add :find,  '/line/:id',             model: Models::Lines::Line
+        map.add :mode,  '/line/mode/:id',        model: Models::Lines::Line
+        map.add :route, '/line/route',           model: Models::Lines::Line
+        map.add :status,'/line/mode/:id/status', model: Models::Lines::Line
+        map.add :meta,  '/line/meta/:type',      model: Models::Lines::Meta
       end
     end
 

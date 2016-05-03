@@ -1,7 +1,7 @@
 module ServiceDisruption
   module Models
     module Lines
-      class Meta
+      module Meta
         class ServiceType < BaseModel
 
           attribute :name, String

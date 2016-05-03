@@ -1,7 +1,7 @@
 module ServiceDisruption
   module Models
     module Lines
-      class Meta
+      module Meta
         class Severity < BaseModel
 
           attribute :mode_name, String

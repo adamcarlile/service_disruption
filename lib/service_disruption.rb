@@ -27,12 +27,11 @@ module ServiceDisruption
       autoload :Route,      'service_disruption/models/lines/route'
       autoload :Stop,       'service_disruption/models/lines/stop'
       autoload :Line,       'service_disruption/models/lines/line'
-      autoload :Meta,       'service_disruption/models/lines/meta'
-      class Meta
+      module Meta
+        autoload :DisruptionCatagory, 'service_disruption/models/lines/meta/disruption_catagory'
         autoload :Mode,               'service_disruption/models/lines/meta/mode'
-        autoload :Severity,           'service_disruption/models/lines/meta/severity'
-        autoload :DisruptionCategory, 'service_disruption/models/lines/meta/disruption_category'
         autoload :ServiceType,        'service_disruption/models/lines/meta/service_type'
+        autoload :Severity,           'service_disruption/models/lines/meta/severity'
       end
     end
   end

@@ -11,7 +11,7 @@ module ServiceDisruption
         def from_payload(payload, connection)
           case payload
           when Array then payload.map { |x| new(x.merge(client: connection)) }
-          when Hash then [new(payload.merge(client: connection))]
+          when Hash then new(payload.merge(client: connection))
           end
         end
 

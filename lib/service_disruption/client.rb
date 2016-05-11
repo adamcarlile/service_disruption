@@ -29,10 +29,10 @@ module ServiceDisruption
         map.add :route, '/line/route',           model: Models::Lines::Line
         map.add :status,'/line/mode/:id/status', model: Models::Lines::Line
         map.resource :meta do |meta|
-          meta.add :modes, '/line/meta/modes',                                model: Models::Lines::Meta::Mode
-          meta.add :severity, '/line/meta/severity',                          model: Models::Lines::Meta::Severity
+          meta.add :modes,                 '/line/meta/modes',                model: Models::Lines::Meta::Mode
+          meta.add :severity,              '/line/meta/severity',             model: Models::Lines::Meta::Severity
           meta.add :disruption_catagories, '/line/meta/disruptioncatagories', model: Models::Lines::Meta::DisruptionCatagory, transform: ->(r) { r.map {|x| {name: x}} }
-          meta.add :service_types, '/line/meta/servicetype',                  model: Models::Lines::Meta::ServiceType,        transform: ->(r) { r.map {|x| {name: x}} }
+          meta.add :service_types,         '/line/meta/servicetype',          model: Models::Lines::Meta::ServiceType,        transform: ->(r) { r.map {|x| {name: x}} }
         end
       end
     end

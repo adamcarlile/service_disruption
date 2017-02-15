@@ -1,48 +1,62 @@
-begin
-  require 'rubygems'
-rescue LoadError
-end
-
-require 'uri'
-require 'thor'
-require 'httparty'
-require 'eventmachine'
-require 'daemons'
-require 'rainbow'
-require 'ruby_gntp'
-require 'terminal-notifier'
+require 'active_support'
 require 'active_support/core_ext'
+require 'faraday'
+require 'faraday_middleware'
+require 'virtus'
+require 'virtus/relations'
+require 'pry'
 
-#Redefine runtime loadpath
-$:.unshift File.join(File.dirname(__FILE__), *%w[.. lib])
-
-require "service_disruption/command"
-require "service_disruption/data_source"
-require "service_disruption/line"
-require "service_disruption/status"
-require "service_disruption/network"
-require "service_disruption/notifiers/growl"
-require "service_disruption/notifiers/notification_center"
-
-require "service_disruption/core_ext/hash"
+require 'service_disruption/extensions/hash'
 
 module ServiceDisruption
-  VERSION = '1.0.0'
-  TFL_ENDPOINT = 'http://cloud.tfl.gov.uk/TrackerNet/LineStatus'
-  ROOT_PATH = File.dirname(File.dirname(__FILE__))
 
-  extend self
+  autoload :Version,  'service_disruption/version'
+  autoload :Client,   'service_disruption/client'
 
-  def notifier
-    @notifier ||= ServiceDisruption::Notifiers::NotificationCenter.new
+  module Middleware
+    autoload :RubifyKeys, 'service_disruption/middleware/rubify_keys'
   end
 
-  def data_source
-    @data_source ||= ServiceDisruption::DataSource.new(TFL_ENDPOINT)
+  module Models
+    autoload :BaseModel,  'service_disruption/models/base_model'
+    autoload :Collection, 'service_disruption/models/collection'
+
+    module Lines
+      autoload :Arrival,    'service_disruption/models/lines/arrival'
+      autoload :Status,     'service_disruption/models/lines/status'
+      autoload :Route,      'service_disruption/models/lines/route'
+      autoload :Stop,       'service_disruption/models/lines/stop'
+      autoload :Line,       'service_disruption/models/lines/line'
+      module Meta
+        autoload :DisruptionCatagory, 'service_disruption/models/lines/meta/disruption_catagory'
+        autoload :Mode,               'service_disruption/models/lines/meta/mode'
+        autoload :ServiceType,        'service_disruption/models/lines/meta/service_type'
+        autoload :Severity,           'service_disruption/models/lines/meta/severity'
+      end
+    end
   end
 
-  def network
-    @network ||= ServiceDisruption::Network.new(data_source)
+  module Resources
+    autoload :Path, 'service_disruption/resources/path'
+    autoload :Map,  'service_disruption/resources/map'
+  end
+
+  module_function
+
+  def config
+    @config ||= {
+      url: 'https://api.tfl.gov.uk',
+      app_id: ENV['APP_ID'],
+      app_key: ENV['APP_KEY']
+    }
+  end
+
+  def configure(&block)
+    yield config
+  end
+
+  def new(overrides={})
+    Client.new(config.merge(overrides))
   end
 
 end
